@@ -7,6 +7,7 @@
 </script>
 
 <Router>
+  <Route path="" component={Login} />
   <Route path="login" component={Login} />
   <Route path="list" component={PizzaList} />
   <Route path="design" component={PizzaDesign} />

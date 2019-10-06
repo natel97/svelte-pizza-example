@@ -1,6 +1,6 @@
 <script>
   import { navigate, Link } from "svelte-routing";
-  import Pizza from "../Components/Pizza.svelte";
+  import Pizza from "../Components/PizzaCard.svelte";
   let pizzas = window.localStorage.getItem("pizza") || [];
 
   $: window.localStorage.setItem("pizza", pizzas);
