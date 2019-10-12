@@ -1,9 +1,6 @@
 <script>
   import Pizza from "../Components/Design/Pizza.svelte";
-  import Crust from "../Components/Design/Steps/Crust.svelte";
-  import Sauce from "../Components/Design/Steps/Sauce.svelte";
-  import Cheese from "../Components/Design/Steps/Cheese.svelte";
-  import Toppings from "../Components/Design/Steps/Toppings.svelte";
+  import Step from "../Components/Design/Steps/Step.svelte";
 
   let stepIndex = 0;
 
@@ -12,23 +9,33 @@
   let steps = [
     {
       name: "Crust",
-      component: Crust
+      options: ["Thin", "Thick", "Pan", "Stuffed"],
+      selection: {}
     },
     {
       name: "Sauce",
-      component: Sauce
-    },
-    {
-      name: "Cheese",
-      component: Cheese
+      options: ["Pizza Sauce", "Alfredo"],
+      selection: {}
     },
     {
       name: "Toppings",
-      component: Toppings
+      options: [
+        "Cheese",
+        "Pepperoni",
+        "Canadian Bacon",
+        "Beef",
+        "Chicken",
+        "Pork",
+        "Italian Sausage",
+        "Olives",
+        "Mushrooms",
+        "Green Peppers"
+      ],
+      multiple: true,
+      amounts: true,
+      selection: {}
     }
   ];
-
-  let currentStep = steps[stepIndex];
 </script>
 
 <style>
@@ -49,7 +56,7 @@
   </nav>
   Step: {stepIndex + 1}
   <Pizza />
-  <svelte:component this={steps[stepIndex].component} />
+  <Step {...steps[stepIndex]} />
 
   <div class="flex-row">
     <div
@@ -60,7 +67,7 @@
     <div
       class="button is-primary full-width"
       on:click={() => (stepIndex += stepIndex < steps.length - 1 ? 1 : 0)}>
-      Next
+      {stepIndex === steps.length - 1 ? 'Done' : 'Next'}
     </div>
   </div>
 </div>
